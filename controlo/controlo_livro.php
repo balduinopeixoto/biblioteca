@@ -24,7 +24,7 @@ if($url=="cadastrar"){
     
      $extensao=strrchr($_FILES['file']['name'], ".");// pega a extensão da imagem a ser passada
   
-    $foto="livro".date("Y").date("m").date("d").date("s").$extensao;
+    $foto="livro".date("Y").date("m").date("d").date("s").$extensao;//criamos um novo nome para imagem
     
 
     $q=" select * from livros where titulo='$titulo' and categoria='$cadastrar'";// verifica se esse Livro já existe na base de dados
@@ -36,7 +36,7 @@ if($url=="cadastrar"){
 
     $cadastrar=$modelo_livro->cadastrar($titulo,$editora,$autor,$ano,$foto,$edicao,$prate);//recebe o valor da função cadastrar 
 
-    if($cadastrar==2){
+    if($cadastrar==2){ 
     move_uploaded_file($_FILES['file']['tmp_name'], "../img/".$foto);
 
     $_SESSION['alerta']='<div class="alert alert-success alert-dismissible">
