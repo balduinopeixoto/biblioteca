@@ -36,7 +36,7 @@ if (isset($_SESSION['alerta'])) {
                 <table class="table table-hover">
                   <thead>
                     <tr>
-                      <th>#</th>
+                     
                       <th>Foto</th>
                       <th>Nome</th>
                       <th>Usuário</th>
@@ -50,7 +50,7 @@ if (isset($_SESSION['alerta'])) {
 @$nome=$_POST['nome'];
 
 $pagina=(isset($_GET['pag']))? $_GET['pag']:1;
-$q="select * from usuario";
+$q="select * from Funcionarios";
 $sel=$pdo->prepare($q);
 $sel->execute();
 //contar o total de produtos
@@ -62,29 +62,26 @@ $numpag=ceil($total_resisto/$quantidade_pag);
 $inicio=($quantidade_pag*$pagina)-$quantidade_pag;
 
 
+$i=0;
+$e="select *from Funcionarios where Nome like '%$nome%' limit {$inicio},".$quantidade_pag;
+$q=$pdo->prepare($e);
+$q->execute();
+while ($dados=$q->fetch(PDO::FETCH_OBJ)) {
 
+?>
+<tr>
 
-
-                    $i=0;
-                    $e="select *from usuario where nome like '%$nome%' limit {$inicio},".$quantidade_pag;
-                    $q=$pdo->prepare($e);
-                    $q->execute();
-                    while ($dados=$q->fetch(PDO::FETCH_OBJ)) {
-                   
-                    ?>
-                    <tr>
-                      <td><?php echo$i=$i+1; ?></td>
-                      <td><img src="../../img/<?php echo $dados->foto?>" width="100"></td>
-                      <td><?php echo $dados->nome;?></td>
-                      <td><span class="tag tag-success"><?php echo $dados->usuario;?></span></td>
-                      <td><?php echo $dados->email;?></td>
-                      <td><?php echo $dados->acesso;?></td>
-                      <td><a href="?url=editarusuario&cod=<?=$dados->idusuario?>"> <button onclick="return confirm('Deseja realmente editar?')" class="btn btn-primary"><i class="fa fa-edit"></i></button> </a></td>
-                      <td><a href="../../modelo/m_usuario.php?url=eliminar&cod=<?=$dados->idusuario?>"> <button onclick="return confirm('Deseja realmente eliminar?')" class="btn btn-danger"><i class="fa fa-trash"></i></button> </a></td>
-                    </tr>
-                   <?php
-                 }
-                   ?>
+<td><img src="../img/<?php echo $dados->Foto?>" width="100"></td>
+<td><?php echo $dados->Nome;?></td>
+<td><span class="tag tag-success"><?php echo $dados->usuario;?></span></td>
+<td><?php echo $dados->Email;?></td>
+<td><?php echo $dados->Cargo;?></td>
+<td><a href="?url=editarusuario&cod=<?=$dados->IDFuncionario?>"> <button onclick="return confirm('Deseja realmente editar?')" class="btn btn-primary"><i class="fa fa-edit"></i></button> </a></td>
+<!--<td><a href="../controlo/controlo_funcionario.php?url=eliminar&cod=<?=$dados->IDFuncionario?>"> <button onclick="return confirm('Deseja realmente eliminar?')" class="btn btn-danger"><i class="fa fa-trash"></i></button> </a></td>-->
+</tr>
+<?php
+}
+?>
                    
                   </tbody>
                 </table>

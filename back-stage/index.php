@@ -118,7 +118,7 @@ while ($not=$no->fetch(PDO::FETCH_OBJ)) {
         </div>
       </li>
       <li class="nav-item">
-         <a href="../../modelo/m_login.php?url=sair" onclick="return confirm('tem certeza que deseja sair?')" class="dropdown-item dropdown-footer">Terminar Sessão</a>
+         <a href="../controlo/controlo_login.php?url=sair" onclick="return confirm('tem certeza que deseja sair?')" class="dropdown-item dropdown-footer">Terminar Sessão</a>
       </li>
       <li class="">
         <a class="nav-link" data-widget="#" data-slide="true" href="?url=perfil" style="color:red">
@@ -143,7 +143,7 @@ while ($not=$no->fetch(PDO::FETCH_OBJ)) {
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-          <img src="../../img/<?php //echo $dados['foto'];?>" class="img-circle elevation-2" alt="User Image">
+          <img src="../img/<?php //echo $dados['foto'];?>" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
           <a href="#" class="d-block"><?php// echo $dados['nome'];?></a>

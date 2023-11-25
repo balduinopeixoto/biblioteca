@@ -5,7 +5,7 @@
 <?php
 if(isset($_GET['cod'])){
 $id=$_GET['cod'];
-$l=$pdo->prepare("select *from usuario where idusuario=$id");
+$l=$pdo->prepare("select *from Funcionarios where IDFuncionario=$id");
 $l->execute();
 $us=$l->fetch(PDO::FETCH_ASSOC);
 
@@ -18,12 +18,12 @@ $us=$l->fetch(PDO::FETCH_ASSOC);
                 <h3 class="card-title">Editar Usuário</h3>
               </div>
               <div class="card-body">
-              <form action="../../modelo/m_usuario.php?url=editar" method="post" enctype="multipart/form-data">
+              <form action="../controlo/controlo_funcionario.php?url=editar" method="post" enctype="multipart/form-data">
             <div class="row">
               <div class="col-md-12">
                 <div class="form-group">
                   <label>Nome</label>
-                <input type="text" class="form-control"value="<?=$us['nome']?>" name="nome" required="">
+                <input type="text" class="form-control"value="<?=$us['Nome']?>" name="nome" required="">
 
                 </div>
                 <!-- /.form-group -->
@@ -40,14 +40,14 @@ $us=$l->fetch(PDO::FETCH_ASSOC);
                <div class="col-md-6">
                 <div class="form-group">
                   <label>Email</label>
-                <input type="email" class="form-control" value="<?=$us['email']?>" required="" name="email">
+                <input type="email" class="form-control" value="<?=$us['Email']?>" required="" name="email">
 
                 </div>
                 <!-- /.form-group -->
                 <div class="form-group">
                  
-                 <input type="hidden" name="id" class="form-control" value="<?=$us['idusuario']?>" required="">
-                 <input type="hidden" name="foto" class="form-control" value="<?=$us['foto']?>" required="">
+                 <input type="hidden" name="id" class="form-control" value="<?=$us['IDFuncionario']?>" required="">
+                 <input type="hidden" name="foto" class="form-control" value="<?=$us['Foto']?>" required="">
 
                 </div>
                 <!-- /.form-group -->
@@ -57,7 +57,7 @@ $us=$l->fetch(PDO::FETCH_ASSOC);
                 <div class="form-group">
                   <label>Nivel</label>
                 <select required="" name="nivel" class="form-control">
-                  <option value="">Selecione...</option>
+                  <option><?php echo$us['Cargo'] ?></option>
                   <option >Bibliotecario</option>
                   <option >Gerente</option>
                 </select>
@@ -81,7 +81,7 @@ $us=$l->fetch(PDO::FETCH_ASSOC);
           
               </div>
                <div class="card-footer">
-                  <button type="submit" class="btn btn-info">Registrar</button>
+                  <button type="submit" class="btn btn-info">Gravar</button>
                
                 </div>
             </div>

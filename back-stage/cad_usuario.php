@@ -15,7 +15,7 @@ if (isset($_SESSION['alerta'])) {
                 <h3 class="card-title">Cadastrar Bibliotecário</h3>
               </div>
               <div class="card-body">
-              <form action="../../modelo/m_usuario.php?url=cadastrar" method="post" enctype="multipart/form-data">
+              <form action="../controlo/controlo_funcionario.php?url=cadastrar" method="post" enctype="multipart/form-data">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
